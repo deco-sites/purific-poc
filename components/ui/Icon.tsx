@@ -35,7 +35,7 @@ export type AvailableIcons =
   | "FilterList"
   | "WhatsApp";
 
-interface Props extends JSX.SVGAttributes<SVGSVGElement> {
+export interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
    * Symbol id from element to render. Take a look at `/static/icons.svg`.
    *
@@ -43,14 +43,17 @@ interface Props extends JSX.SVGAttributes<SVGSVGElement> {
    */
   id: AvailableIcons;
   size?: number;
+  fillHexColor?: string;
 }
 
 function Icon(
-  { id, strokeWidth = 16, size, width, height, ...otherProps }: Props,
+  { id, strokeWidth = 16, size, width, height, fillHexColor, ...otherProps }:
+    Props,
 ) {
   return (
     <svg
       {...otherProps}
+      fill={fillHexColor ?? "currentColor"}
       width={width ?? size}
       height={height ?? size}
       strokeWidth={strokeWidth}
